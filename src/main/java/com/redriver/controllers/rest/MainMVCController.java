@@ -34,7 +34,7 @@ public class MainMVCController {
         this.restTemplate = restTemplateBuilder.build();
     }
 	@GetMapping("/")
-	public String init(HttpServletRequest request) { 
+	public String init(HttpServletRequest request) {
 		
 		//RestTemplate restTemplate = new RestTemplate();
 		String pageNumber = request.getParameter("pageNumber");
