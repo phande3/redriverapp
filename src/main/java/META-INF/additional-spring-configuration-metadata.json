@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "redriver.student.api.endpoint",
+  "type": "java.lang.String",
+  "description": "A description for 'redriver.student.api.endpoint'"
+}]}
