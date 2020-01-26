@@ -33,27 +33,6 @@ public class MainMVCController {
 	public MainMVCController(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
-//	//@GetMapping("/")
-//	public String getAll(@RequestParam(required = false) Integer page ,HttpServletRequest request) {
-//		RestTemplate restTemplate = new RestTemplate();
-//		String rrapiResourceUrl
-//		  = "http://localhost:9090/rest/v1/students/paginated?firstName=&pageNumber=0";
-////		Student[] students
-////		  = restTemplate.getForObject(rrapiResourceUrl , Student[].class);
-////		List <Student> lStudents =  Arrays.asList(students);
-////		PagedListHolder<Student> pagedListHolder = new PagedListHolder<>(lStudents);
-////		pagedListHolder.setPageSize(5);
-////		
-////		
-////		request.setAttribute("students", lStudents);
-//		
-//		PageHolder pageHolder
-//		  = restTemplate.getForObject(rrapiResourceUrl , PageHolder.class);
-//	
-//		request.setAttribute("pageHolder", pageHolder);
-//		request.setAttribute("mode", "view");
-//		return "index";
-//	}
 	@GetMapping("/")
 	public String init(HttpServletRequest request) {
 		
@@ -66,12 +45,7 @@ public class MainMVCController {
 		  = apiUrl +"paginated?searchName=" 
 		+ (StringUtils.isEmpty(searchName)?"":searchName)
 		  		+ "&pageNumber="+pageNumber;
-//		Student[] students
-//		  = restTemplate.getForObject(rrapiResourceUrl , Student[].class);
-//		List <Student> lStudents =  Arrays.asList(students);
-//		
-//		request.setAttribute("students", lStudents);
-		
+	
 		PageHolder pageHolder
 		  = restTemplate.getForObject(rrapiResourceUrl , PageHolder.class);
 	
@@ -86,7 +60,6 @@ public class MainMVCController {
 	public String update(@RequestParam(name = "studentId") Long id , HttpServletRequest request ,
 			HttpServletResponse resp) throws IOException {
 		
-		//RestTemplate restTemplate = new RestTemplate();
 		String rrapiResourceUrl
 		  = apiUrl+id;
 		ResponseEntity<Student> response
@@ -94,16 +67,11 @@ public class MainMVCController {
 			
 		request.setAttribute("student", response.getBody());
 		request.setAttribute("mode", "edit");
-		//resp.sendRedirect("/");
 		return "index";
 	}
 	@PostMapping("/save")
 	public String save(  @ModelAttribute Student student, HttpServletRequest request,HttpServletResponse resp) throws IOException {
 		
-		//RestTemplate restTemplate = new RestTemplate();
-//		String rrapiResourceUrl
-//		  = "http://localhost:9090/rest/v1/students/";
-//		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -112,8 +80,7 @@ public class MainMVCController {
 		ResponseEntity<Student> response
 		  = restTemplate.exchange(apiUrl, HttpMethod.POST ,entity,Student.class);
 		
-		
-		//resp.sendRedirect("/");	
+		resp.sendRedirect("/");	
 		init( request);
 		if(response.getStatusCodeValue()==200) {
 			request.setAttribute("servermsg", "Student saved successfully!!");
@@ -126,14 +93,12 @@ public class MainMVCController {
 	public String delete(@RequestParam(name = "studentId") Long id , HttpServletRequest request ,
 			HttpServletResponse resp) throws IOException {
 		
-		//RestTemplate restTemplate = new RestTemplate();
 		String rrapiResourceUrl
 		  = apiUrl+id;
 		ResponseEntity<Student> response
 		  = restTemplate.exchange(rrapiResourceUrl, HttpMethod.DELETE,null,Student.class);
-		
-		
-		//resp.sendRedirect("/");
+			
+		resp.sendRedirect("/");
 		init( request);
 		if(response.getStatusCodeValue()==200) {
 			request.setAttribute("servermsg", "Student Deleted successfully!!");
