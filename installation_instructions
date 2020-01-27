@@ -3,6 +3,8 @@ Demo application in JSP and bootstrap to display students List
 
 Installation Instructions:
 
+Prerequisite :- You have Java version 8 installed in your machine
+
 Install MYSQL server . These are public Linux installation instructions. For Windows , a MYSQL installed could be used
 sudo apt-get install mysql-server
 sudo service mysql start
