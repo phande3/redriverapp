@@ -3,15 +3,15 @@ Demo application in JSP and bootstrap to display students List
 
 Installation Instructions:
 
-Install MYSQL server .
+Install MYSQL server . These are public Linux installation instructions. For Windows , a MYSQL installed could be used
 sudo apt-get install mysql-server
 sudo service mysql start
 sudo service mysql status
 
-#Create DB User
-mysql -u root -p
-SET PASSWORD = PASSWORD('root');
+#Create DB User using your favourite sql client app
 
+CREATE USER 'redrivertest'@'localhost' IDENTIFIED BY 'admin';
+GRANT ALL PRIVILEGES ON redriverdb.* TO 'redrivertest'@'localhost';
 
 Once SQL DB server is set with user root having password root , 
 
