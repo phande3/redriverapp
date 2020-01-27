@@ -58,6 +58,7 @@
 		<dependency>
 		  <groupId>org.apache.tomcat.embed</groupId>
 		  <artifactId>tomcat-embed-jasper</artifactId>
+		  <scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -77,8 +78,10 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration><executable>true</executable></configuration>
 			</plugin>
 		</plugins>
 	</build>
 
+	<packaging>war</packaging>
 </project>
